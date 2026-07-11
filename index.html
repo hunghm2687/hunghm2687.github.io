@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NXH - Portfolio</title>
+    <title>Nguyen Xuan Hung | Portfolio & CV</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-body: #070b13;
-            --bg-card: #0f172a;
-            --bg-card-inner: #1e293b;
-            --primary: #38bdf8;
+            --bg-body: #060913;
+            --bg-card: #0b132b;
+            --bg-card-inner: #1c2541;
+            --primary: #10b981; /* Đổi sang màu Emerald Green */
+            --primary-gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.06);
             --radius: 16px;
         }
 
@@ -21,45 +22,43 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
-            padding-top: 80px;
             overflow-x: hidden;
         }
 
-        /* Navbar chuẩn chỉnh giống ảnh mẫu */
+        /* Navbar */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(7, 11, 19, 0.85);
+            top: 0; left: 0; width: 100%;
+            background-color: rgba(6, 9, 19, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
+            padding: 18px 8%;
             z-index: 1000;
         }
 
         .logo {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 800;
             color: var(--text-main);
             letter-spacing: 1px;
-            cursor: pointer;
         }
+        .logo span { color: var(--primary); }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 30px;
+            align-items: center;
         }
 
         .nav-links a {
@@ -67,372 +66,426 @@
             text-decoration: none;
             font-size: 1rem;
             font-weight: 500;
-            transition: color 0.25s ease;
+            transition: color 0.25s;
         }
 
         .nav-links a:hover, .nav-links a.active {
             color: var(--primary);
         }
 
-        /* Container căn chỉnh không gian */
+        /* Nút Xem CV trên Navbar */
+        .cv-btn-nav {
+            background: var(--primary-gradient);
+            color: #fff !important;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cv-btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+        }
+
+        /* MÀN HÌNH CHUYỂN ĐỔI (SCREENS) */
+        .screen {
+            display: none;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        .screen.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
         .container {
-            max-width: 1000px;
+            max-width: 950px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
-        /* Section chung */
-        section {
-            margin-bottom: 60px;
-            scroll-margin-top: 100px;
+        /* Header Cá Nhân & MXH */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .profile-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .profile-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            transition: color 0.25s, transform 0.25s;
+        }
+        .social-links a:hover {
+            color: var(--primary);
+            transform: scale(1.15);
         }
 
+        /* Card cấu trúc chuẩn cao cấp */
         .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--text-main);
+            font-size: 1.8rem;
             margin-bottom: 25px;
-            letter-spacing: -0.5px;
+            font-weight: 700;
         }
 
-        /* Hộp bọc ngoài mềm mại giống hệt hình minh họa */
         .premium-card {
-            background-color: rgba(15, 23, 42, 0.6);
+            background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
             padding: 30px;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+            margin-bottom: 40px;
         }
 
-        .about-text {
-            color: #cbd5e1;
-            font-size: 1.1rem;
-            text-align: justify;
-            line-height: 1.7;
-        }
-
-        /* Bố cục Kỹ năng 2 Cột dạng lưới */
-        .skills-container {
+        /* Kỹ năng Grid */
+        .skills-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
         }
-
-        .skill-group {
-            background-color: #0f172a;
+        .skill-box {
+            background: rgba(28, 37, 65, 0.4);
             border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 25px;
+            padding: 20px;
+            border-radius: 12px;
         }
-
-        .group-header {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 20px;
+        .skill-box h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+        }
+        .skill-box ul {
+            list-style: none;
+            padding-left: 5px;
+        }
+        .skill-box li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: #cbd5e1;
         }
 
-        .group-header i {
-            color: var(--primary);
+        /* Project Card chuẩn ảnh mẫu */
+        .project-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 35px;
+            position: relative;
         }
-
-        .skill-item {
+        .project-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 15px;
+            color: var(--text-main);
+        }
+        .project-card p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
         }
 
-        .skill-info {
+        /* Nút bấm Chi tiết chuẩn màu gradient bo tròn */
+        .btn-detail {
+            background: var(--primary-gradient);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+        .btn-detail:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Hệ thống Tag dưới chân dự án */
+        .tag-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background-color: rgba(28, 37, 65, 0.8);
+            border: 1px solid var(--border-color);
+            color: #a5f3fc;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* MÀN HÌNH MỚI: GIAO DIỆN MÀN HÌNH CV CHI TIẾT */
+        .cv-header-actions {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 6px;
-            font-size: 0.95rem;
+            align-items: center;
+            margin-bottom: 30px;
         }
-
-        .skill-name {
+        .btn-back {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
             font-weight: 500;
-            color: #e2e8f0;
+            transition: background 0.2s;
+        }
+        .btn-back:hover {
+            background-color: var(--bg-card-inner);
+        }
+        .btn-download {
+            background: #10b981;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
         }
 
-        .skill-level {
-            color: var(--primary);
-            font-size: 0.85rem;
-        }
-
-        .progress-bar {
-            height: 6px;
-            background-color: #1e293b;
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background-color: var(--primary);
-            border-radius: 10px;
-        }
-
-        /* Phần Dự Án Chuyên Nghiệp */
-        .project-box {
+        /* Thiết kế Form CV Học thuật & Thực tập sinh */
+        .cv-paper {
             background-color: #0f172a;
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
-            padding: 30px;
+            padding: 40px;
         }
-
-        .project-title-main {
-            font-size: 1.4rem;
+        .cv-title {
+            text-align: center;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .cv-section {
+            margin-bottom: 30px;
+        }
+        .cv-section-title {
+            color: var(--primary);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .cv-item {
+            margin-bottom: 15px;
+        }
+        .cv-item-header {
+            display: flex;
+            justify-content: space-between;
             font-weight: 600;
             color: var(--text-main);
+        }
+        .cv-item-sub {
+            color: var(--primary);
+            font-size: 0.9rem;
             margin-bottom: 5px;
         }
 
-        .project-tagline {
-            font-size: 0.95rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .star-layout {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .star-row {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            align-items: start;
-        }
-
-        .star-key {
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            color: var(--primary);
-            letter-spacing: 0.5px;
-        }
-
-        .star-val {
-            color: #cbd5e1;
-            font-size: 1rem;
-        }
-
-        .star-val ul {
-            padding-left: 20px;
-        }
-
-        .star-val li {
-            margin-bottom: 6px;
-        }
-
-        /* Định hướng phát triển */
-        .roadmap-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .roadmap-card {
-            background-color: #0f172a;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .roadmap-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .roadmap-card i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .roadmap-card h4 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        .roadmap-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
         @media (max-width: 768px) {
-            .skills-container, .roadmap-grid {
-                grid-template-columns: 1fr;
-            }
-            .star-row {
-                grid-template-columns: 1fr;
-                gap: 5px;
-            }
-            nav {
-                padding: 15px 4%;
-            }
-            .nav-links {
-                gap: 15px;
-            }
+            .skills-grid { grid-template-columns: 1fr; }
+            .cv-header-actions { flex-direction: column; gap: 15px; align-items: flex-start; }
+        }
+
+        /* Ẩn navbar khi thực hiện in PDF */
+        @media print {
+            nav, .cv-header-actions { display: none !important; }
+            body { background: #fff; color: #000; }
+            .cv-paper { border: none; background: #fff; color: #000; padding: 0; }
+            .cv-section-title { color: #000; border-color: #000; }
+            .cv-item-header, .cv-item-sub { color: #000 !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Nút bấm điều hướng mượt mà -->
+    <!-- Navigation -->
     <nav>
-        <div class="logo">XUÂN HÙNG</div>
+        <div class="logo" onclick="switchScreen('main-screen')">NXH<span>.PRO</span></div>
         <ul class="nav-links">
-            <li><a href="#about" class="active">Giới thiệu</a></li>
-            <li><a href="#skills">Kỹ năng</a></li>
-            <li><a href="#projects">Dự án</a></li>
-            <li><a href="#roadmap">Định hướng</a></li>
+            <li><a href="#about" onclick="switchScreen('main-screen')">Giới thiệu</a></li>
+            <li><a href="#skills" onclick="switchScreen('main-screen')">Kỹ năng</a></li>
+            <li><a href="#projects" onclick="switchScreen('main-screen')">Dự án</a></li>
+            <li><a href="#" class="cv-btn-nav" onclick="switchScreen('cv-screen')">Xem CV cá nhân</a></li>
         </ul>
     </nav>
 
-    <div class="container">
+    <!-- MÀN HÌNH 1: TRANG CHỦ PORTFOLIO -->
+    <div id="main-screen" class="screen active">
+        <div class="container">
+            <header class="profile-header">
+                <h1>NGUYỄN XUÂN HÙNG</h1>
+                <p class="profile-subtitle">Mạng máy tính & Điện toán đám mây | Đại học Quốc gia Hà Nội</p>
+                <div class="social-links">
+                    <!-- Thay các link bên dưới bằng link tài khoản thật của bạn -->
+                    <a href="https://github.com" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                </div>
+            </header>
 
-        <!-- Mục tiêu nghề nghiệp -->
-        <section id="about">
-            <h2 class="section-title">Mục tiêu nghề nghiệp</h2>
-            <div class="premium-card">
-                <p class="about-text">
-                    Tôi là sinh viên ngành Mạng máy tính và Truyền thông dữ liệu tại UET - VNU, luôn chủ động học hỏi và phát triển kỹ năng trong các lĩnh vực Network, Cybersecurity, Backend Development và Cloud Computing. Mục tiêu của tôi là không ngừng nâng cao chuyên môn thông qua các dự án thực tế, tích lũy kinh nghiệm trong môi trường chuyên nghiệp và trở thành một kỹ sư công nghệ có khả năng xây dựng những hệ thống an toàn, ổn định và hiệu quả.
-                </p>
-            </div>
-        </section>
+            <section id="about">
+                <h2 class="section-title">Mục tiêu nghề nghiệp</h2>
+                <div class="premium-card">
+                    <p style="text-align: justify; color: #cbd5e1; font-size: 1.05rem;">
+                        Tôi là sinh viên ngành Mạng máy tính và Truyền thông dữ liệu tại UET - VNU, luôn chủ động học hỏi và phát triển kỹ năng trong các lĩnh vực Network, Cybersecurity, Backend Development và Cloud Computing. Mục tiêu của tôi là không ngừng nâng cao chuyên môn thông qua các dự án thực tế, tích lũy kinh nghiệm trong môi trường chuyên nghiệp và trở thành một kỹ sư công nghệ có khả năng xây dựng những hệ thống hạ tầng an toàn, ổn định và hiệu quả.
+                    </p>
+                </div>
+            </section>
 
-        <!-- Kỹ năng phân nhóm đổ bóng sang trọng -->
-        <section id="skills">
-            <h2 class="section-title">Kỹ năng</h2>
-            <div class="skills-container">
-                
-                <div class="skill-group">
-                    <div class="group-header">
-                        <i class="fa-solid fa-code"></i>
-                        <span>Lập trình & Công nghệ</span>
+            <section id="skills">
+                <h2 class="section-title">Kỹ năng cốt lõi</h2>
+                <div class="skills-grid">
+                    <div class="skill-box">
+                        <h4><i class="fa-solid fa-network-wired"></i> Mạng & Hạ tầng</h4>
+                        <ul>
+                            <li>• Kiến thức vững chắc: TCP/IP, UDP, DNS, HTTP/HTTPS</li>
+                            <li>• Lập trình mạng: Java Socket, Đa luồng (Multi-threading)</li>
+                            <li>• Hệ điều hành: Linux/Ubuntu (Bash Script, Phân quyền)</li>
+                        </ul>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">Java (Core, Multi-threading)</span><span class="skill-level">Thành thạo</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">Python / C++</span><span class="skill-level">Cơ bản tốt</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 70%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">Design Patterns & SOLID</span><span class="skill-level">Ứng dụng tốt</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
+                    <div class="skill-box">
+                        <h4><i class="fa-solid fa-server"></i> Lập trình & Cloud</h4>
+                        <ul>
+                            <li>• Ngôn ngữ: Java Core, Python, C++</li>
+                            <li>• Database: MySQL, Thiết kế mô hình ERD qua Workbench</li>
+                            <li>• Công cụ: Git/GitHub, Quản lý dự án Maven, SOLID</li>
+                        </ul>
                     </div>
                 </div>
+            </section>
 
-                <div class="skill-group">
-                    <div class="group-header">
-                        <i class="fa-solid fa-network-wired"></i>
-                        <span>Network & Cloud Infrastructure</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">TCP/IP, UDP, HTTP/HTTPS, DNS</span><span class="skill-level">Vững kiến thức</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">MySQL (Workbench, ERD)</span><span class="skill-level">Thiết kế tốt</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">Microsoft Azure & Docker</span><span class="skill-level">Đang nghiên cứu</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
+            <section id="projects">
+                <h2 class="section-title">Dự án trọng tâm</h2>
+                <div class="project-card">
+                    <h3>Dự án học tập tại trường</h3>
+                    <p>Phát triển ứng dụng đấu giá trực tuyến theo mô hình Client - Server, cho phép nhiều người dùng tham gia đấu giá đồng thời và cập nhật giá theo thời gian thực.</p>
+                    
+                    <!-- BẤM NÚT NÀY SẼ CHUYỂN MÀN HÌNH SANG XEM CV CHI TIẾT DỰ ÁN -->
+                    <button class="btn-detail" onclick="switchScreen('cv-screen')">Chi tiết</button>
+                    
+                    <!-- Khối tag chuẩn chỉnh như ảnh minh họa -->
+                    <div class="tag-container">
+                        <div class="tag">UET</div>
+                        <div class="tag">Learning</div>
+                        <div class="tag">Java Socket</div>
+                        <div class="tag">MySQL</div>
                     </div>
                 </div>
+            </section>
+        </div>
+    </div>
 
+    <!-- MÀN HÌNH 2: MÀN HÌNH HIỂN THỊ CV CHI TIẾT (XUẤT ĐƯỢC PDF) -->
+    <div id="cv-screen" class="screen">
+        <div class="container">
+            <div class="cv-header-actions">
+                <button class="btn-back" onclick="switchScreen('main-screen')"><i class="fa-solid fa-arrow-left"></i> Quay lại Portfolio</button>
+                <button class="btn-download" onclick="window.print()"><i class="fa-solid fa-file-pdf"></i> Tải / In CV dạng PDF</button>
             </div>
-        </section>
 
-        <!-- Dự án hiển thị chi tiết theo cấu trúc app -->
-        <section id="projects">
-            <h2 class="section-title">Dự án nổi bật</h2>
-            <div class="project-box">
-                <div class="project-title-main">Hệ thống Đấu giá Trực tuyến (Auction System)</div>
-                <div class="project-tagline">Bài tập lớn nhóm tại UET | Core Developer (Backend & Database)</div>
-                
-                <div class="star-layout">
-                    <div class="star-row">
-                        <div class="star-key">Context</div>
-                        <div class="star-val">Hệ thống yêu cầu xử lý các phiên đấu giá công khai real-time, cho phép hàng chục kết nối client tương tác đồng thời cùng lúc mà không xảy ra sai sót dữ liệu.</div>
-                    </div>
-                    <div class="star-row">
-                        <div class="star-key">Task</div>
-                        <div class="star-val">Thiết kế hạ tầng mạng chịu tải tốt, giải quyết triệt để bài toán race condition khi nhiều client cùng lúc nâng giá, và thiết kế database lưu trữ tối ưu.</div>
-                    </div>
-                    <div class="star-row">
-                        <div class="star-key">Action</div>
-                        <div class="star-val">
-                            <ul>
-                                <li>Triển khai cấu trúc <strong>Multi-threaded Socket Server</strong> bằng Java để xử lý độc lập luồng mạng của từng client.</li>
-                                <li>Áp dụng cơ chế khóa đồng bộ (<strong>Synchronization</strong>) xử lý bài toán Concurrency khi hệ thống cập nhật giá trị dồn dập.</li>
-                                <li>Dùng <strong>MySQL Workbench</strong> thiết kế, chuẩn hóa ERD và tối ưu các câu lệnh SQL truy vấn thời gian thực.</li>
-                                <li>Áp dụng các mẫu thiết kế <strong>Singleton, Factory, Decorator</strong> để làm sạch và module hóa mã nguồn hệ thống.</li>
-                            </ul>
+            <!-- Khung giấy CV chi tiết -->
+            <div class="cv-paper">
+                <div class="cv-title">
+                    <h2>NGUYỄN XUÂN HÙNG</h2>
+                    <p style="color: var(--primary); font-weight: 600; margin-top: 5px;">Sinh viên ngành Mạng Máy Tính & Truyền Thông Dữ Liệu</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">Đại học Công nghệ - ĐHQGHN (UET - VNU)</p>
+                </div>
+
+                <div class="cv-section">
+                    <div class="cv-section-title">Học vấn</div>
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <span>Đại học Công nghệ - Đại học Quốc gia Hà Nội</span>
+                            <span>2024 - Hiện tại</span>
                         </div>
+                        <div class="cv-item-sub">Ngành Mạng máy tính và Truyền thông dữ liệu</div>
                     </div>
-                    <div class="star-row">
-                        <div class="star-key">Result</div>
-                        <div class="star-val">Hệ thống vận hành ổn định với độ trễ thấp, chạy mượt kịch bản hàng chục client giả lập bấm giá đồng thời mà dữ liệu vẫn chuẩn xác 100%.</div>
+                </div>
+
+                <div class="cv-section">
+                    <div class="cv-section-title">Kinh nghiệm Dự án Chi tiết (STAR Model)</div>
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <span>Hệ thống Đấu giá Trực tuyến (Auction System)</span>
+                            <span>Bài tập lớn nhóm</span>
+                        </div>
+                        <div class="cv-item-sub">Vai trò: Core Developer (Backend & Database Engineer)</div>
+                        <p style="font-size: 0.95rem; color: #cbd5e1; margin-top: 8px; text-align: justify;">
+                            <strong>• Context:</strong> Xây dựng hệ thống đấu giá phân tán real-time, yêu cầu xử lý đồng thời hàng chục kết nối client mà không xảy ra hiện tượng sai lệch dữ liệu tài khoản hoặc thời gian.<br>
+                            <strong>• Task:</strong> Thiết kế kiến trúc chịu tải mạng tốt cho Server, giải quyết triệt để race condition khi nhiều người dùng nâng giá tại một mili-giây, quản lý lưu trữ đồng bộ cơ sở dữ liệu.<br>
+                            <strong>• Action:</strong> Triển khai kiến trúc Multi-threaded Socket Server trong Java; áp dụng cơ chế khóa đồng bộ (Synchronization) xử lý Concurrency; sử dụng MySQL Workbench thiết kế chuẩn hóa thực thể ERD và viết truy vấn SQL tối ưu hóa; áp dụng các mẫu thiết kế Singleton, Factory để module hóa mã nguồn.<br>
+                            <strong>• Result:</strong> Hệ thống chạy mượt mà ổn định với độ trễ tối thiểu, đáp ứng hoàn hảo kịch bản giả lập tải đồng thời mà dữ liệu lịch sử phòng đấu giá luôn chính xác tuyệt đối.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cv-section">
+                    <div class="cv-section-title">Định hướng & Mục tiêu chứng chỉ</div>
+                    <div class="cv-item">
+                        <p style="font-size: 0.95rem; color: #cbd5e1;">• <strong>Ngoại ngữ:</strong> Đang hoàn thiện lộ trình đạt chứng chỉ IELTS 5.5 - 6.5 đáp ứng tiêu chuẩn học thuật quốc tế.</p>
+                        <p style="font-size: 0.95rem; color: #cbd5e1; margin-top: 5px;">• <strong>Cloud & Security:</strong> Đang nghiên cứu hạ tầng phân tán, mục tiêu chinh phục chứng chỉ Azure Fundamentals (AZ-900) và CompTIA Security+.</p>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Lộ trình học vấn & Chứng chỉ tương lai -->
-        <section id="roadmap">
-            <h2 class="section-title">Học vấn & Định hướng</h2>
-            <div class="roadmap-grid">
-                <div class="roadmap-card">
-                    <i class="fa-solid fa-language"></i>
-                    <h4>Ngoại ngữ</h4>
-                    <p>Lộ trình ôn luyện đạt chứng chỉ IELTS 5.5 - 6.5 toàn diện.</p>
-                </div>
-                <div class="roadmap-card">
-                    <i class="fa-solid fa-cloud"></i>
-                    <h4>Cloud Infrastructure</h4>
-                    <p>Chinh phục Azure Fundamentals (AZ-900) và hạ tầng phân tán.</p>
-                </div>
-                <div class="roadmap-card">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <h4>Cybersecurity</h4>
-                    <p>Nghiên cứu mật mã học (RSA), bảo mật hệ thống & CompTIA Security+.</p>
-                </div>
-            </div>
-        </section>
-
+        </div>
     </div>
 
     <script>
-        // Xử lý hiệu ứng click nút chuyển section và tự active class
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const sections = document.querySelectorAll('section');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 120) {
-                    current = section.getAttribute('id');
-                }
+        // Hàm xử lý logic bấm nút chuyển sang màn hình khác cực mượt
+        function switchScreen(screenId) {
+            // Ẩn toàn bộ các màn hình hiện tại
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => {
+                screen.classList.remove('active');
             });
 
+            // Kích hoạt màn hình được chọn
+            const targetScreen = document.getElementById(screenId);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+                // Cuộn màn hình lên đầu trang khi chuyển view
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Đồng bộ trạng thái menu active
+            const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
+                if(screenId === 'cv-screen' && link.classList.contains('cv-btn-nav')) {
                     link.classList.add('active');
                 }
             });
-        });
+        }
     </script>
 </body>
 </html>
