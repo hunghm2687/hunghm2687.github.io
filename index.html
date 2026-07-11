@@ -88,7 +88,7 @@
             box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
         }
 
-        /* Screens */
+        /* Screens Hệ thống 3 màn hình chuyển đổi */
         .screen {
             display: none;
             opacity: 0;
@@ -211,7 +211,7 @@
             color: #cbd5e1;
         }
 
-        /* Projects Grid (Multi-project Support) */
+        /* Projects Grid */
         .projects-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -305,8 +305,43 @@
             margin-bottom: 15px;
         }
 
-        /* CV Screen Actions */
-        .cv-header-actions {
+        /* MÀN HÌNH CHI TIẾT DỰ ÁN (PROJECT SCREEN UI) */
+        .project-detail-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .star-section {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 25px;
+        }
+        .star-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .star-content {
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+        .star-content ul {
+            padding-left: 20px;
+        }
+        .star-content li {
+            margin-bottom: 6px;
+        }
+
+        /* Actions chung */
+        .header-actions {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -337,13 +372,13 @@
 
         @media (max-width: 768px) {
             .about-grid, .skills-grid, .projects-grid, .roadmap-grid { grid-template-columns: 1fr; }
-            .cv-header-actions { flex-direction: column; gap: 15px; align-items: flex-start; }
+            .header-actions { flex-direction: column; gap: 15px; align-items: flex-start; }
             nav { padding: 15px 4%; }
             .nav-links { gap: 15px; }
         }
 
         @media print {
-            nav, .cv-header-actions { display: none !important; }
+            nav, .header-actions { display: none !important; }
             body { background: #fff; color: #000; }
             .cv-paper { border: none !important; background: #fff !important; color: #000 !important; padding: 0 !important; box-shadow: none !important; }
         }
@@ -351,6 +386,7 @@
 </head>
 <body>
 
+    <!-- Navigation -->
     <nav>
         <div class="logo" onclick="switchScreen('main-screen')">NXH<span>.PRO</span></div>
         <ul class="nav-links">
@@ -361,6 +397,7 @@
         </ul>
     </nav>
 
+    <!-- MÀN HÌNH 1: TRANG CHỦ PORTFOLIO -->
     <div id="main-screen" class="screen active">
         <div class="container">
             <header class="profile-header">
@@ -414,13 +451,15 @@
             <section id="projects">
                 <h2 class="section-title">Dự án trọng tâm</h2>
                 <div class="projects-grid">
+                    <!-- Card Dự án 1 -->
                     <div class="project-card">
                         <div>
                             <h3>Auction System</h3>
                             <p>Ứng dụng đấu giá trực tuyến real-time theo kiến trúc Client-Server sử dụng cơ chế xử lý Concurrency đa luồng, tối ưu hóa cơ sở dữ liệu và đảm bảo tính toàn vẹn dữ liệu mạng.</p>
                         </div>
                         <div>
-                            <button class="btn-detail" onclick="switchScreen('cv-screen')">Chi tiết dự án</button>
+                            <!-- ẤN NÚT NÀY SẼ SANG MÀN HÌNH CHI TIẾT DỰ ÁN RIÊNG -->
+                            <button class="btn-detail" onclick="switchScreen('project-screen')">Chi tiết dự án</button>
                             <div class="tag-container">
                                 <div class="tag">Java Socket</div>
                                 <div class="tag">MySQL</div>
@@ -429,6 +468,7 @@
                         </div>
                     </div>
 
+                    <!-- Card Dự án 2 -->
                     <div class="project-card future-card">
                         <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2.2rem; color: var(--text-muted); margin-bottom: 15px;"></i>
                         <h3 style="color: var(--text-muted);">Next Big Project</h3>
@@ -464,15 +504,59 @@
         </div>
     </div>
 
+    <!-- MÀN HÌNH CHI TIẾT DỰ ÁN ĐỘC LẬP (PROJECT DETAILS SCREEN) -->
+    <div id="project-screen" class="screen">
+        <div class="container">
+            <div class="header-actions">
+                <button class="btn-back" onclick="switchScreen('main-screen')"><i class="fa-solid fa-arrow-left"></i> Quay lại Trang chủ</button>
+                <div style="font-weight: 600; color: var(--primary);">Dự án: Auction System</div>
+            </div>
+
+            <h2 class="section-title" style="margin-bottom: 10px;">Hệ thống Đấu giá Trực tuyến (Auction System)</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px; font-style: italic;">Bài tập lớn nhóm tại UET - VNU | Vai trò: Core Developer</p>
+
+            <div class="project-detail-layout">
+                <div class="star-section">
+                    <div class="star-title"><i class="fa-solid fa-circle-info"></i> Context (Bối cảnh)</div>
+                    <div class="star-content">Hệ thống yêu cầu xử lý các phiên đấu giá công khai real-time, cho phép hàng chục kết nối client tương tác đồng thời cùng lúc mà không xảy ra sai sót dữ liệu tài chính hoặc đồng bộ thời gian.</div>
+                </div>
+
+                <div class="star-section">
+                    <div class="star-title"><i class="fa-solid fa-bullseye"></i> Task (Nhiệm vụ)</div>
+                    <div class="star-content">Thiết kế hạ tầng kết nối mạng Server chịu tải ổn định, giải quyết triệt để bài toán race condition khi có nhiều người dùng cùng nhấn nút nâng giá tại cùng một mili-giây, và cấu trúc hệ thống lưu trữ database tối ưu.</div>
+                </div>
+
+                <div class="star-section">
+                    <div class="star-title"><i class="fa-solid fa-gears"></i> Action (Hành động kỹ thuật)</div>
+                    <div class="star-content">
+                        <ul>
+                            <li>Triển khai kiến trúc **Multi-threaded Socket Server** trong Java để cấp phát luồng xử lý độc lập cho từng kết nối client.</li>
+                            <li>Áp dụng các cơ chế khóa đồng bộ (**Synchronization / Concurrency Controls**) để quản lý tiến trình ghi dữ liệu dồn dập, loại bỏ hoàn toàn xung đột giá thầu.</li>
+                            <li>Sử dụng **MySQL Workbench** để chuẩn hóa mô hình ERD, viết các câu lệnh và thủ tục truy vấn SQL tối ưu hóa tốc độ phản hồi real-time.</li>
+                            <li>Ứng dụng các mẫu thiết kế hướng đối tượng (**Singleton, Factory, Decorator**) và nguyên lý **SOLID** để module hóa backend sạch sẽ, dễ bảo trì.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="star-section">
+                    <div class="star-title"><i class="fa-solid fa-square-check"></i> Result (Kết quả đạt được)</div>
+                    <div class="star-content">Hệ thống vận hành ổn định với độ trễ tối thiểu, đáp ứng hoàn hảo kịch bản kiểm thử giả lập tải lớn khi hàng chục client tương tác giá đồng thời mà dữ liệu lịch sử phòng đấu giá luôn chuẩn xác 100%.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MÀN HÌNH 3: GIAO DIỆN CV CHUẨN HARVARD (BẢN GIẤY TRẮNG CHỮ ĐEN) -->
     <div id="cv-screen" class="screen">
         <div class="container">
-            <div class="cv-header-actions">
+            <div class="header-actions">
                 <button class="btn-back" onclick="switchScreen('main-screen')"><i class="fa-solid fa-arrow-left"></i> Quay lại Portfolio</button>
                 <button class="btn-download" onclick="window.print()"><i class="fa-solid fa-file-pdf"></i> Tải / In CV chuẩn Harvard</button>
             </div>
 
             <div class="cv-paper" style="background-color: #ffffff; color: #000000; font-family: 'Times New Roman', Times, serif; padding: 50px; border-radius: 4px; box-shadow: 0 0 25px rgba(0,0,0,0.6); max-width: 850px; margin: 0 auto; line-height: 1.4;">
                 
+                <!-- CV Header -->
                 <div style="text-align: center; margin-bottom: 25px;">
                     <h2 style="font-size: 1.7rem; font-weight: bold; color: #000000; border: none; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">NGUYEN XUAN HUNG</h2>
                     <p style="font-size: 0.95rem; color: #000000; margin-top: 5px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; align-items: center;">
@@ -483,6 +567,7 @@
                     </p>
                 </div>
 
+                <!-- EDUCATION -->
                 <div style="margin-bottom: 22px;">
                     <h3 style="font-size: 1.05rem; font-weight: bold; border-bottom: 1px solid #000000; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 2px; letter-spacing: 0.5px;">EDUCATION</h3>
                     <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1rem;">
@@ -496,6 +581,7 @@
                     </div>
                 </div>
 
+                <!-- TECHNICAL SKILLS -->
                 <div style="margin-bottom: 22px;">
                     <h3 style="font-size: 1.05rem; font-weight: bold; border-bottom: 1px solid #000000; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 2px; letter-spacing: 0.5px;">TECHNICAL SKILLS</h3>
                     <ul style="padding-left: 18px; font-size: 0.95rem; margin: 0; list-style-type: disc;">
@@ -506,9 +592,11 @@
                     </ul>
                 </div>
 
+                <!-- PROJECT EXPERIENCE -->
                 <div style="margin-bottom: 22px;">
                     <h3 style="font-size: 1.05rem; font-weight: bold; border-bottom: 1px solid #000000; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 2px; letter-spacing: 0.5px;">PROJECT EXPERIENCE</h3>
                     
+                    <!-- Dự án 1 -->
                     <div style="margin-bottom: 15px;">
                         <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1rem;">
                             <span>AUCTION SYSTEM – UNIVERSITY ACADEMIC PROJECT</span>
@@ -522,6 +610,7 @@
                         </ul>
                     </div>
 
+                    <!-- Dự án 2 (Khung mẫu cho tương lai) -->
                     <div>
                         <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1rem;">
                             <span>FUTURE PROJECT TITLE (E.G., CLOUD DEPLOYMENT / SECURITY AUDIT)</span>
@@ -536,6 +625,7 @@
                     </div>
                 </div>
 
+                <!-- CERTIFICATIONS -->
                 <div>
                     <h3 style="font-size: 1.05rem; font-weight: bold; border-bottom: 1px solid #000000; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 2px; letter-spacing: 0.5px;">CERTIFICATIONS & PROFESSIONAL DEVELOPMENT</h3>
                     <ul style="padding-left: 18px; font-size: 0.95rem; margin: 0; list-style-type: disc;">
@@ -550,7 +640,7 @@
     </div>
 
     <script>
-        // Xử lý logic chuyển màn hình mượt mà
+        // Hàm chuyển đổi mượt mà giữa 3 màn hình độc lập
         function switchScreen(screenId) {
             const screens = document.querySelectorAll('.screen');
             screens.forEach(screen => screen.classList.remove('active'));
