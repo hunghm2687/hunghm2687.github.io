@@ -157,11 +157,36 @@
             margin-bottom: 40px;
         }
 
+        /* About Grid Info (GPA & Major) */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .info-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .info-box h3 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
         /* Skills */
         .skills-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
+            margin-bottom: 40px;
         }
         .skill-box {
             background: rgba(28, 37, 65, 0.4);
@@ -186,37 +211,60 @@
             color: #cbd5e1;
         }
 
-        /* Projects */
+        /* Projects Grid (Multi-project Support) */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
         .project-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
-            padding: 35px;
-            margin-bottom: 30px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.3);
         }
         .project-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
             color: var(--text-main);
         }
         .project-card p {
-            color: #cbd5e1;
+            color: var(--text-muted);
             margin-bottom: 20px;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
+            text-align: justify;
+            flex-grow: 1;
+        }
+        .project-card.future-card {
+            border: 1px dashed rgba(148, 163, 184, 0.3);
+            background: rgba(11, 19, 43, 0.3);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         .btn-detail {
             background: var(--primary-gradient);
             color: #fff;
             border: none;
-            padding: 12px 30px;
-            border-radius: 12px;
-            font-size: 1rem;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             transition: opacity 0.2s, transform 0.2s;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: inline-block;
+            text-align: center;
         }
         .btn-detail:hover {
             transform: translateY(-2px);
@@ -225,16 +273,16 @@
 
         .tag-container {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
         .tag {
             background-color: rgba(28, 37, 65, 0.8);
             border: 1px solid var(--border-color);
             color: #a5f3fc;
-            padding: 6px 16px;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
         }
 
@@ -288,7 +336,7 @@
         }
 
         @media (max-width: 768px) {
-            .skills-grid, .roadmap-grid { grid-template-columns: 1fr; }
+            .about-grid, .skills-grid, .projects-grid, .roadmap-grid { grid-template-columns: 1fr; }
             .cv-header-actions { flex-direction: column; gap: 15px; align-items: flex-start; }
             nav { padding: 15px 4%; }
             .nav-links { gap: 15px; }
@@ -303,7 +351,6 @@
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav>
         <div class="logo" onclick="switchScreen('main-screen')">NXH<span>.PRO</span></div>
         <ul class="nav-links">
@@ -314,7 +361,6 @@
         </ul>
     </nav>
 
-    <!-- MÀN HÌNH 1: TRANG CHỦ PORTFOLIO -->
     <div id="main-screen" class="screen active">
         <div class="container">
             <header class="profile-header">
@@ -328,11 +374,18 @@
             </header>
 
             <section id="about">
-                <h2 class="section-title">Mục tiêu nghề nghiệp</h2>
-                <div class="premium-card">
-                    <p style="text-align: justify; color: #cbd5e1; font-size: 1.05rem;">
-                        Tôi là sinh viên ngành Mạng máy tính và Truyền thông dữ liệu tại UET - VNU, luôn chủ động học hỏi và phát triển kỹ năng trong các lĩnh vực Network, Cybersecurity, Backend Development và Cloud Computing. Mục tiêu của tôi là không ngừng nâng cao chuyên môn thông qua các dự án thực tế, tích lũy kinh nghiệm trong môi trường chuyên nghiệp và trở thành một kỹ sư công nghệ có khả năng xây dựng những hệ thống hạ tầng an toàn, ổn định và hiệu quả.
-                    </p>
+                <h2 class="section-title">Tổng quan mục tiêu</h2>
+                <div class="about-grid">
+                    <div class="premium-card" style="margin-bottom: 0;">
+                        <p style="text-align: justify; color: #cbd5e1; font-size: 1.05rem;">
+                            Tôi là sinh viên ngành Mạng máy tính và Truyền thông dữ liệu tại UET - VNU, luôn chủ động học hỏi và phát triển kỹ năng trong các lĩnh vực Network, Cybersecurity, Backend Development và Cloud Computing. Mục tiêu của tôi là không ngừng nâng cao chuyên môn thông qua các dự án thực tế, tích lũy kinh nghiệm trong môi trường chuyên nghiệp và trở thành một kỹ sư công nghệ có khả năng xây dựng những hệ thống hạ tầng an toàn, ổn định và hiệu quả.
+                        </p>
+                    </div>
+                    <div class="info-box">
+                        <p style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Cumulative GPA</p>
+                        <h3>3.7<span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/4.0</span></h3>
+                        <p style="font-size: 0.85rem; color: var(--primary); margin-top: 5px; font-weight: 500;">Xếp loại: Xuất sắc</p>
+                    </div>
                 </div>
             </section>
 
@@ -360,15 +413,30 @@
 
             <section id="projects">
                 <h2 class="section-title">Dự án trọng tâm</h2>
-                <div class="project-card">
-                    <h3>Dự án học tập tại trường</h3>
-                    <p>Phát triển ứng dụng đấu giá trực tuyến theo mô hình Client - Server, cho phép nhiều người dùng tham gia đấu giá đồng thời và cập nhật giá theo thời gian thực.</p>
-                    <button class="btn-detail" onclick="switchScreen('cv-screen')">Chi tiết</button>
-                    <div class="tag-container">
-                        <div class="tag">UET</div>
-                        <div class="tag">Learning</div>
-                        <div class="tag">Java Socket</div>
-                        <div class="tag">MySQL</div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div>
+                            <h3>Auction System</h3>
+                            <p>Ứng dụng đấu giá trực tuyến real-time theo kiến trúc Client-Server sử dụng cơ chế xử lý Concurrency đa luồng, tối ưu hóa cơ sở dữ liệu và đảm bảo tính toàn vẹn dữ liệu mạng.</p>
+                        </div>
+                        <div>
+                            <button class="btn-detail" onclick="switchScreen('cv-screen')">Chi tiết dự án</button>
+                            <div class="tag-container">
+                                <div class="tag">Java Socket</div>
+                                <div class="tag">MySQL</div>
+                                <div class="tag">UET Project</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card future-card">
+                        <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2.2rem; color: var(--text-muted); margin-bottom: 15px;"></i>
+                        <h3 style="color: var(--text-muted);">Next Big Project</h3>
+                        <p style="text-align: center; color: rgba(148, 163, 184, 0.6);">Sẵn sàng tích hợp hạ tầng Điện toán đám mây Azure hoặc các giải pháp kiểm thử bảo mật Security Audit hệ thống...</p>
+                        <div class="tag-container" style="justify-content: center;">
+                            <div class="tag" style="opacity: 0.5;">Cloud</div>
+                            <div class="tag" style="opacity: 0.5;">Security</div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -379,7 +447,7 @@
                     <div class="roadmap-card">
                         <i class="fa-solid fa-language"></i>
                         <h4 style="margin-bottom: 8px;">Ngoại ngữ</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-muted);">Lộ trình ôn luyện đạt chứng chỉ IELTS 5.5 - 6.5 toàn diện.</p>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Lộ trình ôn luyện đạt chứng chỉ IELTS 6.5 toàn diện.</p>
                     </div>
                     <div class="roadmap-card">
                         <i class="fa-solid fa-cloud"></i>
@@ -396,7 +464,6 @@
         </div>
     </div>
 
-    <!-- MÀN HÌNH 2: GIAO DIỆN CV CHUẨN HARVARD (MULTI-PROJECT BẢN GIẤY TRẮNG CHỮ ĐEN) -->
     <div id="cv-screen" class="screen">
         <div class="container">
             <div class="cv-header-actions">
@@ -406,7 +473,6 @@
 
             <div class="cv-paper" style="background-color: #ffffff; color: #000000; font-family: 'Times New Roman', Times, serif; padding: 50px; border-radius: 4px; box-shadow: 0 0 25px rgba(0,0,0,0.6); max-width: 850px; margin: 0 auto; line-height: 1.4;">
                 
-                <!-- CV Header -->
                 <div style="text-align: center; margin-bottom: 25px;">
                     <h2 style="font-size: 1.7rem; font-weight: bold; color: #000000; border: none; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">NGUYEN XUAN HUNG</h2>
                     <p style="font-size: 0.95rem; color: #000000; margin-top: 5px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; align-items: center;">
@@ -417,7 +483,6 @@
                     </p>
                 </div>
 
-                <!-- EDUCATION -->
                 <div style="margin-bottom: 22px;">
                     <h3 style="font-size: 1.05rem; font-weight: bold; border-bottom: 1px solid #000000; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 2px; letter-spacing: 0.5px;">EDUCATION</h3>
                     <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1rem;">
@@ -431,7 +496,6 @@
                     </div>
                 </div>
 
-                <!-- TECHNICAL SKILLS -->
                 <div style="margin-bottom: 22px;">
                     <h3 style="font-size: 1.05rem; font-weight: bold; border-bottom: 1px solid #000000; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 2px; letter-spacing: 0.5px;">TECHNICAL SKILLS</h3>
                     <ul style="padding-left: 18px; font-size: 0.95rem; margin: 0; list-style-type: disc;">
@@ -442,11 +506,9 @@
                     </ul>
                 </div>
 
-                <!-- PROJECT EXPERIENCE -->
                 <div style="margin-bottom: 22px;">
                     <h3 style="font-size: 1.05rem; font-weight: bold; border-bottom: 1px solid #000000; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 2px; letter-spacing: 0.5px;">PROJECT EXPERIENCE</h3>
                     
-                    <!-- Dự án 1 -->
                     <div style="margin-bottom: 15px;">
                         <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1rem;">
                             <span>AUCTION SYSTEM – UNIVERSITY ACADEMIC PROJECT</span>
@@ -460,7 +522,6 @@
                         </ul>
                     </div>
 
-                    <!-- Dự án 2 (Khung mẫu cho tương lai) -->
                     <div>
                         <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1rem;">
                             <span>FUTURE PROJECT TITLE (E.G., CLOUD DEPLOYMENT / SECURITY AUDIT)</span>
@@ -475,7 +536,6 @@
                     </div>
                 </div>
 
-                <!-- CERTIFICATIONS -->
                 <div>
                     <h3 style="font-size: 1.05rem; font-weight: bold; border-bottom: 1px solid #000000; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 2px; letter-spacing: 0.5px;">CERTIFICATIONS & PROFESSIONAL DEVELOPMENT</h3>
                     <ul style="padding-left: 18px; font-size: 0.95rem; margin: 0; list-style-type: disc;">
@@ -490,6 +550,7 @@
     </div>
 
     <script>
+        // Xử lý logic chuyển màn hình mượt mà
         function switchScreen(screenId) {
             const screens = document.querySelectorAll('.screen');
             screens.forEach(screen => screen.classList.remove('active'));
