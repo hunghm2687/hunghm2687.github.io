@@ -10,7 +10,7 @@
             --bg-body: #060913;
             --bg-card: #0b132b;
             --bg-card-inner: #1c2541;
-            --primary: #10b981; /* Đổi sang màu Emerald Green */
+            --primary: #10b981; 
             --primary-gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -51,6 +51,7 @@
             font-weight: 800;
             color: var(--text-main);
             letter-spacing: 1px;
+            cursor: pointer;
         }
         .logo span { color: var(--primary); }
 
@@ -73,7 +74,6 @@
             color: var(--primary);
         }
 
-        /* Nút Xem CV trên Navbar */
         .cv-btn-nav {
             background: var(--primary-gradient);
             color: #fff !important;
@@ -88,7 +88,7 @@
             box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
         }
 
-        /* MÀN HÌNH CHUYỂN ĐỔI (SCREENS) */
+        /* Screens */
         .screen {
             display: none;
             opacity: 0;
@@ -110,7 +110,7 @@
             padding: 20px;
         }
 
-        /* Header Cá Nhân & MXH */
+        /* Profile Header */
         .profile-header {
             text-align: center;
             margin-bottom: 50px;
@@ -143,7 +143,6 @@
             transform: scale(1.15);
         }
 
-        /* Card cấu trúc chuẩn cao cấp */
         .section-title {
             font-size: 1.8rem;
             margin-bottom: 25px;
@@ -158,7 +157,7 @@
             margin-bottom: 40px;
         }
 
-        /* Kỹ năng Grid */
+        /* Skills */
         .skills-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -187,13 +186,13 @@
             color: #cbd5e1;
         }
 
-        /* Project Card chuẩn ảnh mẫu */
+        /* Projects */
         .project-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
             padding: 35px;
-            position: relative;
+            margin-bottom: 30px;
         }
         .project-card h3 {
             font-size: 1.5rem;
@@ -206,7 +205,6 @@
             font-size: 1.05rem;
         }
 
-        /* Nút bấm Chi tiết chuẩn màu gradient bo tròn */
         .btn-detail {
             background: var(--primary-gradient);
             color: #fff;
@@ -225,7 +223,6 @@
             opacity: 0.9;
         }
 
-        /* Hệ thống Tag dưới chân dự án */
         .tag-container {
             display: flex;
             gap: 10px;
@@ -241,7 +238,26 @@
             font-weight: 500;
         }
 
-        /* MÀN HÌNH MỚI: GIAO DIỆN MÀN HÌNH CV CHI TIẾT */
+        /* Roadmap */
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .roadmap-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+        }
+        .roadmap-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* CV Screen Actions */
         .cv-header-actions {
             display: flex;
             justify-content: space-between;
@@ -271,58 +287,17 @@
             font-weight: 600;
         }
 
-        /* Thiết kế Form CV Học thuật & Thực tập sinh */
-        .cv-paper {
-            background-color: #0f172a;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 40px;
-        }
-        .cv-title {
-            text-align: center;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        .cv-section {
-            margin-bottom: 30px;
-        }
-        .cv-section-title {
-            color: var(--primary);
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            border-bottom: 1px solid #1e293b;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-        .cv-item {
-            margin-bottom: 15px;
-        }
-        .cv-item-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-        .cv-item-sub {
-            color: var(--primary);
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-
         @media (max-width: 768px) {
-            .skills-grid { grid-template-columns: 1fr; }
+            .skills-grid, .roadmap-grid { grid-template-columns: 1fr; }
             .cv-header-actions { flex-direction: column; gap: 15px; align-items: flex-start; }
+            nav { padding: 15px 4%; }
+            .nav-links { gap: 15px; }
         }
 
-        /* Ẩn navbar khi thực hiện in PDF */
         @media print {
             nav, .cv-header-actions { display: none !important; }
             body { background: #fff; color: #000; }
-            .cv-paper { border: none; background: #fff; color: #000; padding: 0; }
-            .cv-section-title { color: #000; border-color: #000; }
-            .cv-item-header, .cv-item-sub { color: #000 !important; }
+            .cv-paper { border: none !important; background: #fff !important; color: #000 !important; padding: 0 !important; box-shadow: none !important; }
         }
     </style>
 </head>
@@ -346,8 +321,7 @@
                 <h1>NGUYỄN XUÂN HÙNG</h1>
                 <p class="profile-subtitle">Mạng máy tính & Điện toán đám mây | Đại học Quốc gia Hà Nội</p>
                 <div class="social-links">
-                    <!-- Thay các link bên dưới bằng link tài khoản thật của bạn -->
-                    <a href="https://github.com" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://github.com/yourusername" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
                     <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                     <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
                 </div>
@@ -389,11 +363,7 @@
                 <div class="project-card">
                     <h3>Dự án học tập tại trường</h3>
                     <p>Phát triển ứng dụng đấu giá trực tuyến theo mô hình Client - Server, cho phép nhiều người dùng tham gia đấu giá đồng thời và cập nhật giá theo thời gian thực.</p>
-                    
-                    <!-- BẤM NÚT NÀY SẼ CHUYỂN MÀN HÌNH SANG XEM CV CHI TIẾT DỰ ÁN -->
                     <button class="btn-detail" onclick="switchScreen('cv-screen')">Chi tiết</button>
-                    
-                    <!-- Khối tag chuẩn chỉnh như ảnh minh họa -->
                     <div class="tag-container">
                         <div class="tag">UET</div>
                         <div class="tag">Learning</div>
@@ -402,82 +372,128 @@
                     </div>
                 </div>
             </section>
+
+            <section id="roadmap">
+                <h2 class="section-title">Học vấn & Định hướng</h2>
+                <div class="roadmap-grid">
+                    <div class="roadmap-card">
+                        <i class="fa-solid fa-language"></i>
+                        <h4 style="margin-bottom: 8px;">Ngoại ngữ</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Lộ trình ôn luyện đạt chứng chỉ IELTS 5.5 - 6.5 toàn diện.</p>
+                    </div>
+                    <div class="roadmap-card">
+                        <i class="fa-solid fa-cloud"></i>
+                        <h4 style="margin-bottom: 8px;">Cloud Infrastructure</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Chinh phục Azure Fundamentals (AZ-900) và hạ tầng phân tán.</p>
+                    </div>
+                    <div class="roadmap-card">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h4 style="margin-bottom: 8px;">Cybersecurity</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Nghiên cứu mật mã học (RSA), bảo mật hệ thống & CompTIA Security+.</p>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 
-    <!-- MÀN HÌNH 2: MÀN HÌNH HIỂN THỊ CV CHI TIẾT (XUẤT ĐƯỢC PDF) -->
+    <!-- MÀN HÌNH 2: GIAO DIỆN CV CHUẨN HARVARD (MULTI-PROJECT BẢN GIẤY TRẮNG CHỮ ĐEN) -->
     <div id="cv-screen" class="screen">
         <div class="container">
             <div class="cv-header-actions">
                 <button class="btn-back" onclick="switchScreen('main-screen')"><i class="fa-solid fa-arrow-left"></i> Quay lại Portfolio</button>
-                <button class="btn-download" onclick="window.print()"><i class="fa-solid fa-file-pdf"></i> Tải / In CV dạng PDF</button>
+                <button class="btn-download" onclick="window.print()"><i class="fa-solid fa-file-pdf"></i> Tải / In CV chuẩn Harvard</button>
             </div>
 
-            <!-- Khung giấy CV chi tiết -->
-            <div class="cv-paper">
-                <div class="cv-title">
-                    <h2>NGUYỄN XUÂN HÙNG</h2>
-                    <p style="color: var(--primary); font-weight: 600; margin-top: 5px;">Sinh viên ngành Mạng Máy Tính & Truyền Thông Dữ Liệu</p>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">Đại học Công nghệ - ĐHQGHN (UET - VNU)</p>
+            <div class="cv-paper" style="background-color: #ffffff; color: #000000; font-family: 'Times New Roman', Times, serif; padding: 50px; border-radius: 4px; box-shadow: 0 0 25px rgba(0,0,0,0.6); max-width: 850px; margin: 0 auto; line-height: 1.4;">
+                
+                <!-- CV Header -->
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <h2 style="font-size: 1.7rem; font-weight: bold; color: #000000; border: none; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">NGUYEN XUAN HUNG</h2>
+                    <p style="font-size: 0.95rem; color: #000000;">Hanoi, Vietnam | (+84) xx-xxx-xxxx | email@domain.com | github.com/yourusername</p>
                 </div>
 
-                <div class="cv-section">
-                    <div class="cv-section-title">Học vấn</div>
-                    <div class="cv-item">
-                        <div class="cv-item-header">
-                            <span>Đại học Công nghệ - Đại học Quốc gia Hà Nội</span>
-                            <span>2024 - Hiện tại</span>
+                <!-- EDUCATION -->
+                <div style="margin-bottom: 22px;">
+                    <h3 style="font-size: 1.05rem; font-weight: bold; border-bottom: 1px solid #000000; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 2px; letter-spacing: 0.5px;">EDUCATION</h3>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1rem;">
+                        <span>VIETNAM NATIONAL UNIVERSITY, HANOI (VNU) - UNIVERSITY OF ENGINEERING AND TECHNOLOGY (UET)</span>
+                        <span>Expected June 2028</span>
+                    </div>
+                    <div style="font-style: italic; font-size: 0.95rem; margin-top: 2px;">Bachelor of Science in Computer Networks and Data Communications</div>
+                    <div style="font-size: 0.9rem; margin-top: 4px; text-align: justify; color: #111;">
+                        * Relevant Coursework: Computer Networks, Object-Oriented Programming (Java), Discrete Mathematics, Data Structures and Algorithms, Operating Systems (Linux/Ubuntu), Database Management Systems.
+                    </div>
+                </div>
+
+                <!-- TECHNICAL SKILLS -->
+                <div style="margin-bottom: 22px;">
+                    <h3 style="font-size: 1.05rem; font-weight: bold; border-bottom: 1px solid #000000; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 2px; letter-spacing: 0.5px;">TECHNICAL SKILLS</h3>
+                    <ul style="padding-left: 18px; font-size: 0.95rem; margin: 0; list-style-type: disc;">
+                        <li style="margin-bottom: 4px;"><strong>Programming Languages:</strong> Java (Core, Multi-threading, Concurrency), Python, C++, Bash Scripting.</li>
+                        <li style="margin-bottom: 4px;"><strong>Infrastructure & Cloud:</strong> Microsoft Azure (Azure for Students), Docker (Containerization Foundations).</li>
+                        <li style="margin-bottom: 4px;"><strong>Systems & Security:</strong> Linux/Ubuntu System Administration, Relational Database Design (MySQL/Workbench), Cryptographic Foundations (RSA/AES), Network Protocol Analysis (TCP/IP, UDP, DNS, HTTP/HTTPS).</li>
+                        <li style="margin-bottom: 4px;"><strong>Software Engineering:</strong> SOLID Principles, Design Patterns (Singleton, Factory, Decorator), Git/GitHub, Maven.</li>
+                    </ul>
+                </div>
+
+                <!-- PROJECT EXPERIENCE -->
+                <div style="margin-bottom: 22px;">
+                    <h3 style="font-size: 1.05rem; font-weight: bold; border-bottom: 1px solid #000000; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 2px; letter-spacing: 0.5px;">PROJECT EXPERIENCE</h3>
+                    
+                    <!-- Dự án 1 -->
+                    <div style="margin-bottom: 15px;">
+                        <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1rem;">
+                            <span>AUCTION SYSTEM (TEAM 10) – UNIVERSITY ACADEMIC PROJECT</span>
+                            <span>03/2026 – 05/2026</span>
                         </div>
-                        <div class="cv-item-sub">Ngành Mạng máy tính và Truyền thông dữ liệu</div>
+                        <div style="font-style: italic; font-size: 0.95rem; color: #222; margin-top: 2px;">Core Developer (Backend & Database Engineer)</div>
+                        <ul style="padding-left: 18px; font-size: 0.95rem; margin-top: 4px; text-align: justify; list-style-type: disc;">
+                            <li style="margin-bottom: 3px;">Engineered a distributed, real-time Auction System using Java Multi-threaded Socket Server architecture, efficiently handling concurrent client connections with zero synchronization lag.</li>
+                            <li style="margin-bottom: 3px;">Optimized relational database schemas using MySQL Workbench and drafted complex SQL queries, preventing race conditions and ensuring 100% transactional data integrity.</li>
+                            <li style="margin-bottom: 3px;">Applied software design patterns (Singleton, Factory) and SOLID principles to modularize backend components, ensuring the system is decoupled and optimized for cloud migration.</li>
+                        </ul>
                     </div>
-                </div>
 
-                <div class="cv-section">
-                    <div class="cv-section-title">Kinh nghiệm Dự án Chi tiết (STAR Model)</div>
-                    <div class="cv-item">
-                        <div class="cv-item-header">
-                            <span>Hệ thống Đấu giá Trực tuyến (Auction System)</span>
-                            <span>Bài tập lớn nhóm</span>
+                    <!-- Dự án 2 (Khung mẫu cho tương lai) -->
+                    <div>
+                        <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1rem;">
+                            <span>FUTURE PROJECT TITLE (E.G., CLOUD DEPLOYMENT / SECURITY AUDIT)</span>
+                            <span>[Timeframe]</span>
                         </div>
-                        <div class="cv-item-sub">Vai trò: Core Developer (Backend & Database Engineer)</div>
-                        <p style="font-size: 0.95rem; color: #cbd5e1; margin-top: 8px; text-align: justify;">
-                            <strong>• Context:</strong> Xây dựng hệ thống đấu giá phân tán real-time, yêu cầu xử lý đồng thời hàng chục kết nối client mà không xảy ra hiện tượng sai lệch dữ liệu tài khoản hoặc thời gian.<br>
-                            <strong>• Task:</strong> Thiết kế kiến trúc chịu tải mạng tốt cho Server, giải quyết triệt để race condition khi nhiều người dùng nâng giá tại một mili-giây, quản lý lưu trữ đồng bộ cơ sở dữ liệu.<br>
-                            <strong>• Action:</strong> Triển khai kiến trúc Multi-threaded Socket Server trong Java; áp dụng cơ chế khóa đồng bộ (Synchronization) xử lý Concurrency; sử dụng MySQL Workbench thiết kế chuẩn hóa thực thể ERD và viết truy vấn SQL tối ưu hóa; áp dụng các mẫu thiết kế Singleton, Factory để module hóa mã nguồn.<br>
-                            <strong>• Result:</strong> Hệ thống chạy mượt mà ổn định với độ trễ tối thiểu, đáp ứng hoàn hảo kịch bản giả lập tải đồng thời mà dữ liệu lịch sử phòng đấu giá luôn chính xác tuyệt đối.
-                        </p>
+                        <div style="font-style: italic; font-size: 0.95rem; color: #222; margin-top: 2px;">Role / Position (e.g., Cloud Security Specialist)</div>
+                        <ul style="padding-left: 18px; font-size: 0.95rem; margin-top: 4px; text-align: justify; list-style-type: disc; color: #555;">
+                            <li style="margin-bottom: 3px;">[Project Line 1: Bắt đầu bằng một Action Verb mạnh mẽ để tả công nghệ hệ thống/bảo mật áp dụng]</li>
+                            <li style="margin-bottom: 3px;">[Project Line 2: Mô tả giải pháp hạ tầng network, tối ưu hoặc mã hóa dữ liệu thực tế đã triển khai]</li>
+                            <li style="margin-bottom: 3px;">[Project Line 3: Đưa ra kết quả cụ thể về khả năng chịu tải hoặc hiệu suất hệ thống]</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="cv-section">
-                    <div class="cv-section-title">Định hướng & Mục tiêu chứng chỉ</div>
-                    <div class="cv-item">
-                        <p style="font-size: 0.95rem; color: #cbd5e1;">• <strong>Ngoại ngữ:</strong> Đang hoàn thiện lộ trình đạt chứng chỉ IELTS 5.5 - 6.5 đáp ứng tiêu chuẩn học thuật quốc tế.</p>
-                        <p style="font-size: 0.95rem; color: #cbd5e1; margin-top: 5px;">• <strong>Cloud & Security:</strong> Đang nghiên cứu hạ tầng phân tán, mục tiêu chinh phục chứng chỉ Azure Fundamentals (AZ-900) và CompTIA Security+.</p>
-                    </div>
+                <!-- CERTIFICATIONS -->
+                <div>
+                    <h3 style="font-size: 1.05rem; font-weight: bold; border-bottom: 1px solid #000000; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 2px; letter-spacing: 0.5px;">CERTIFICATIONS & PROFESSIONAL DEVELOPMENT</h3>
+                    <ul style="padding-left: 18px; font-size: 0.95rem; margin: 0; list-style-type: disc;">
+                        <li style="margin-bottom: 4px;"><strong>Language Proficiency:</strong> IELTS Academic – Target: 6.5 (In Progress, Expected Examination: Late 2026).</li>
+                        <li style="margin-bottom: 4px;"><strong>Cloud Track:</strong> Studying for Microsoft Certified: Azure Fundamentals (AZ-900) Certification.</li>
+                        <li style="margin-bottom: 4px;"><strong>Security Track:</strong> Training for CompTIA Security+ (Infrastructure Security & Cryptography modules completed).</li>
+                    </ul>
                 </div>
+
             </div>
         </div>
     </div>
 
     <script>
-        // Hàm xử lý logic bấm nút chuyển sang màn hình khác cực mượt
         function switchScreen(screenId) {
-            // Ẩn toàn bộ các màn hình hiện tại
             const screens = document.querySelectorAll('.screen');
-            screens.forEach(screen => {
-                screen.classList.remove('active');
-            });
+            screens.forEach(screen => screen.classList.remove('active'));
 
-            // Kích hoạt màn hình được chọn
             const targetScreen = document.getElementById(screenId);
             if (targetScreen) {
                 targetScreen.classList.add('active');
-                // Cuộn màn hình lên đầu trang khi chuyển view
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            // Đồng bộ trạng thái menu active
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
                 link.classList.remove('active');
